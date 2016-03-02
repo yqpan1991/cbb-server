@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns="http://java.sun.com/xml/ns/javaee" xmlns:web="http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd"
+	xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd"
+	id="WebApp_ID" version="2.5">
+	<!-- 潘永强 系统配置 请勿修改 start -->
+
+	<display-name>cbb-server</display-name>
+	<!-- 配置系统响应和请求的编码集 -->
+	<context-param>
+		<param-name>encode</param-name>
+		<param-value>utf-8</param-value>
+	</context-param>
+	<!-- 配置监听器 -->
+	<filter>
+		<description>编码过滤器</description>
+		<filter-name>EncodingFilter</filter-name>
+		<filter-class>com.apollo.cbb.filter.EncodingFilter</filter-class>
+	</filter>
+	<filter-mapping>
+		<filter-name>EncodingFilter</filter-name>
+		<url-pattern>/*</url-pattern>
+		<dispatcher>REQUEST</dispatcher>
+		<dispatcher>FORWARD</dispatcher>
+		<dispatcher>INCLUDE</dispatcher>
+	</filter-mapping>
+
+	<filter>
+		<description>不缓存过滤器</description>
+		<filter-name>NoCacheFilter</filter-name>
+		<filter-class>com.apollo.cbb.filter.NoCacheFilter</filter-class>
+	</filter>
+	<filter-mapping>
+		<filter-name>NoCacheFilter</filter-name>
+		<url-pattern>/*</url-pattern>
+	</filter-mapping>
+	
+	<!-- 潘永强 系统配置 请勿修改 end -->
+  
+
+	
+	<welcome-file-list>
+		<welcome-file>index.jsp</welcome-file>
+	</welcome-file-list>
+
+
+</web-app>
