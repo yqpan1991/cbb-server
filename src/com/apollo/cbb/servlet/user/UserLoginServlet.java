@@ -1,10 +1,13 @@
 package com.apollo.cbb.servlet.user;
 
+import java.io.BufferedReader;
 import java.io.IOException;
+import java.io.InputStreamReader;
 import java.util.HashMap;
 import java.util.Map;
 
 import javax.servlet.ServletException;
+import javax.servlet.ServletInputStream;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -12,7 +15,6 @@ import javax.servlet.http.HttpServletResponse;
 import org.apache.commons.beanutils.BeanUtils;
 
 import com.apollo.cbb.bean.UserInfo;
-import com.apollo.cbb.constant.UserConst;
 import com.apollo.cbb.dao.UserDaoImpl;
 import com.apollo.cbb.utils.CommonUtil;
 import com.apollo.cbb.utils.ErrorUtils;
@@ -54,6 +56,7 @@ public class UserLoginServlet extends HttpServlet {
 			password	密码	123456
 			type	类型	1 患者 2 医生
 		 * */
+		
 		UserInfo userInfo = new UserInfo();
 		try {
 			BeanUtils.populate(userInfo, request.getParameterMap());
@@ -63,7 +66,7 @@ public class UserLoginServlet extends HttpServlet {
 				if(map != null){
 					Map<String, Object> data = new HashMap<String,Object>();
 					data.put("response", "suc");
-					data.put("userinfo", map);
+					data.put("userInfo", map);
 					CommonUtil.renderJson(response, data);
 					return;
 				}
