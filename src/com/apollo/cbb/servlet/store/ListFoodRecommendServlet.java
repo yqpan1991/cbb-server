@@ -55,14 +55,19 @@ public class ListFoodRecommendServlet extends HttpServlet {
 	private void dealData(HttpServletRequest request, HttpServletResponse response) {
 		String userId = request.getParameter("userId");
 		String type = request.getParameter("type");
-		if(!StringUtils.isEmpty(userId)){
+		if(!StringUtils.isEmpty(type)){
 			UserStoreDaoImpl userStoreDao = new UserStoreDaoImpl();
-			List<Map<String,Object>> recommendList = userStoreDao.getRecommendList(Integer.parseInt(userId), Integer.parseInt(type));
+			List<Map<String,Object>> recommendList = null;
+			if(StringUtils.isEmpty(userId)){
+				recommendList = userStoreDao.getRecommendList(Integer.parseInt(type));
+			}else{
+				recommendList = userStoreDao.getRecommendList(Integer.parseInt(userId), Integer.parseInt(type));
+			}
 			if(recommendList != null){
 				Map<String, Object> results = new HashMap<String, Object>();
 				results.put("response", "suc");
 				results.put("results", recommendList);
-				CommonUtil.renderJson(response, recommendList);
+				CommonUtil.renderJson(response, results);
 			}else{
 				ErrorUtils.sendError("数据格式有误", response);
 			}

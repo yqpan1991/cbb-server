@@ -60,6 +60,11 @@ public class UserStoreDaoTest {
 		System.out.println(userStoreDao.getRecommendList(1, 3));
 	}
 	
+	@Test
+	public void testGetRecommendList(){
+		System.out.println(userStoreDao.getRecommendList(1));
+	}
+	
 	
 	
 	

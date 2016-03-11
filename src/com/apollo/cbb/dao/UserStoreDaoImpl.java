@@ -123,4 +123,17 @@ public class UserStoreDaoImpl {
 		return null;
 	}
 	
+	public List<Map<String,Object>> getRecommendList(int type){
+		String sql = "select user_store.storeId as storeId , user_store.userId as userId ,user_store.userStoreId as userStoreId,store.storename as storeName,user_store.type as type, store.shortString as shortString, store.latitude as latitude, user_store.recommendDate as date, user_store.description as description "
+				+ " from user_store,store where user_store.storeId = store.storeId and user_store.type = ?";
+		try {
+			return runner.query(sql, new MapListHandler(), type);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return null;
+	}
+	
+	
+	
 }
