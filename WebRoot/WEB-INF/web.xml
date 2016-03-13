@@ -90,6 +90,20 @@
     <servlet-name>ListCommentInfoServlet</servlet-name>
     <servlet-class>com.apollo.cbb.servlet.date.ListCommentInfoServlet</servlet-class>
   </servlet>
+  
+    <servlet>
+    <description>This is the description of my J2EE component</description>
+    <display-name>This is the display name of my J2EE component</display-name>
+    <servlet-name>ListMyFoodRecommendServlet</servlet-name>
+    <servlet-class>com.apollo.cbb.servlet.store.ListMyFoodRecommendServlet</servlet-class>
+  </servlet>
+  
+    <servlet>
+    <description>This is the description of my J2EE component</description>
+    <display-name>This is the display name of my J2EE component</display-name>
+    <servlet-name>ListCanDateRecommendServlet</servlet-name>
+    <servlet-class>com.apollo.cbb.servlet.store.ListCanDateRecommendServlet</servlet-class>
+  </servlet>
 
 
 
@@ -135,7 +149,11 @@
     <servlet-name>ListCommentInfoServlet</servlet-name>
     <url-pattern>/date/comment/list</url-pattern>
   </servlet-mapping>
-	
+  
+	<servlet-mapping>
+    <servlet-name>ListMyFoodRecommendServlet</servlet-name>
+    <url-pattern>/food/list/myrec</url-pattern>
+  </servlet-mapping>
 	<!-- 潘永强 系统配置 请勿修改 end -->
   
 

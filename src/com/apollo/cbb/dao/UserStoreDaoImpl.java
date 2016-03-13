@@ -22,11 +22,11 @@ public class UserStoreDaoImpl {
 			return false;
 		}
 		StoreDaoImpl storeDao = new StoreDaoImpl();
-		int storeId = storeDao.queryStoreId(storeInfo.storeName, storeInfo.latitude, storeInfo.longtitude);
+		int storeId = storeDao.queryStoreId(storeInfo.getStoreName(), storeInfo.getLatitude(), storeInfo.getLongtitude());
 		if(storeId > 0){
 			return addUserStoreImpl(recommendInfo, storeId);
 		}else{
-			Map<String, Object> addStore = storeDao.addStore(storeInfo.storeName, storeInfo.latitude, storeInfo.longtitude, storeInfo.shortString);
+			Map<String, Object> addStore = storeDao.addStore(storeInfo.getStoreName(), storeInfo.getLatitude(), storeInfo.getLongtitude(), storeInfo.getShortString());
 			if(addStore != null){
 				storeId = (Integer) addStore.get("storeId");
 				return addUserStoreImpl(recommendInfo, storeId);
@@ -36,10 +36,10 @@ public class UserStoreDaoImpl {
 	}
 	
 	private boolean addUserStoreImpl(RecommendInfo recommendInfo, int storeId) {
-		if(checkUserStoreExist(recommendInfo.userId, storeId)){
+		if(checkUserStoreExist(recommendInfo.getUserId(), storeId)){
 			return false;
 		}else{
-			return insertIntoUserStore(recommendInfo.userId, storeId, recommendInfo.recommendInfo, recommendInfo.recommendType)  > 0;
+			return insertIntoUserStore(recommendInfo.getUserId(), storeId, recommendInfo.getRecommendInfo(), recommendInfo.getType())  > 0;
 		}
 	}
 
@@ -134,6 +134,26 @@ public class UserStoreDaoImpl {
 		return null;
 	}
 	
+	public List<Map<String,Object>> getRecommendListByUserId(int userId){
+		String sql = "select user_store.storeId as storeId , user_store.userId as userId ,user_store.userStoreId as userStoreId,store.storename as storeName,user_store.type as type, store.shortString as shortString, store.latitude as latitude, user_store.recommendDate as date, user_store.description as description "
+				+ " from user_store,store where user_store.storeId = store.storeId and user_store.type in (1,2) and user_store.userId = ? ";
+		try {
+			return runner.query(sql, new MapListHandler(), userId);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return null;
+	}
 	
+	public List<Map<String,Object>> getCanDateRecommendListByUserId(){
+		String sql = "select user_store.storeId as storeId , user_store.userId as userId ,user_store.userStoreId as userStoreId,store.storename as storeName,user_store.type as type, store.shortString as shortString, store.latitude as latitude, user_store.recommendDate as date, user_store.description as description "
+				+ " from user_store,store where user_store.storeId = store.storeId and user_store.type in (1,2) ";
+		try {
+			return runner.query(sql, new MapListHandler());
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return null;
+	}
 	
 }

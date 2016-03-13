@@ -20,16 +20,16 @@ public class UserStoreDaoTest {
 	@Test
 	public void addStoreInfo(){
 		RecommendInfo info = new RecommendInfo();
-		info.recommendInfo="测试数据";
-		info.recommendType = RecommendConst.RECOMMEND_TYPE_NORMAL;
-		info.userId = 2;
+/*		info.recommendInfo="测试数据";
+		info.type = RecommendConst.RECOMMEND_TYPE_NORMAL;
+		info.userId = 2;*/
 		
 		
 		StoreInfo storeInfo = new StoreInfo();
-		storeInfo.latitude = 50;
+/*		storeInfo.latitude = 50;
 		storeInfo.longtitude = 80;
 		storeInfo.shortString="去你妹的";
-		storeInfo.storeName="测试饭店";
+		storeInfo.storeName="测试饭店";*/
 		
 		System.out.println(userStoreDao.addUserStore(info, storeInfo));
 	}
