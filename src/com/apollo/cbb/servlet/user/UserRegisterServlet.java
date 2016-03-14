@@ -16,7 +16,7 @@ import com.apollo.cbb.dao.UserDaoImpl;
 import com.apollo.cbb.utils.CommonUtil;
 import com.apollo.cbb.utils.ErrorUtils;
 
-class UserRegisterServlet extends HttpServlet {
+public class UserRegisterServlet extends HttpServlet {
 
 	private static final long serialVersionUID = 8940698363241098392L;
 

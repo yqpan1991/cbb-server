@@ -154,6 +154,11 @@
     <servlet-name>ListMyFoodRecommendServlet</servlet-name>
     <url-pattern>/food/list/myrec</url-pattern>
   </servlet-mapping>
+  
+	<servlet-mapping>
+    <servlet-name>ListCanDateRecommendServlet</servlet-name>
+    <url-pattern>/food/list/candate</url-pattern>
+  </servlet-mapping>
 	<!-- 潘永强 系统配置 请勿修改 end -->
   
 

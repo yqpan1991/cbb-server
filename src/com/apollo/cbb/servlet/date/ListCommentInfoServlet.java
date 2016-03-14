@@ -54,15 +54,14 @@ public class ListCommentInfoServlet extends HttpServlet {
 	
 	private void dealData(HttpServletRequest request,
 			HttpServletResponse response) {
-		String userId = request.getParameter("userId");
 		String userStoreId = request.getParameter("userStoreId");
-		if(!StringUtils.isEmpty(userId) && !StringUtils.isEmpty(userStoreId)){
+		if(!StringUtils.isEmpty(userStoreId)){
 			UserDateDaoImpl userDateDao = new UserDateDaoImpl();
 			List<Map<String,Object>> commentList = userDateDao.getCommentList(Integer.parseInt(userStoreId));
 			if(commentList != null){
 				Map<String, Object> data = new HashMap<String,Object>();
 				data.put("response", "suc");
-				data.put("userinfo", commentList);
+				data.put("results", commentList);
 				CommonUtil.renderJson(response, data);
 			}else{
 				ErrorUtils.sendError("不存在此数据", response);
